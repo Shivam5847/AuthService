@@ -1,4 +1,4 @@
-package com.example.authservice.Response;
+package com.example.authservice.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,3 +13,4 @@ public class JwtResponseDTO {
     private String token;
     private String accessToken;
 }
+

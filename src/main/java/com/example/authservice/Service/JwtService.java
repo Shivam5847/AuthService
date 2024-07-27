@@ -31,12 +31,12 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    private Claims extractAllClaims(String token){
+    private Claims extractAllClaims(String token) {
         return Jwts
                 .parserBuilder()
                 .setSigningKey(getSignKey())
                 .build()
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token)
                 .getBody();
     }
 
@@ -48,7 +48,6 @@ public class JwtService {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
-
 
 
     public String GenerateToken(String username){
@@ -66,9 +65,9 @@ public class JwtService {
                 .setExpiration(new Date(System.currentTimeMillis()+1000*60*1))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
     }
-
     private Key getSignKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET);
         return Keys.hmacShaKeyFor(keyBytes);
     }
+
 }

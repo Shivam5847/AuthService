@@ -1,21 +1,30 @@
 package com.example.authservice.Models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+
+@Entity
+@Data
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-@Entity
-@Builder
-@Table(name = "user_role")
+@Table(name = "roles")
 public class UserRole {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "role_id")
     private Long roleId;
-    private String role;
+
+    private String name;
+
 }
